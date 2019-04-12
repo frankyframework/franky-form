@@ -2,12 +2,15 @@
 namespace Franky\Form;
 
 
-class InputRadio{
+class InputDateMobile{
 
     private $name = '';
     private $attrs = [];
+    private $InputSelect;
 
     public function __construct() {
+
+
 
     }
 
@@ -44,19 +47,10 @@ class InputRadio{
         return $this->attrs[$attr];
     }
 
-      public function options($options= null){
-        if(isset($options))
-        {
-            $this->options = $options;
-            return $this;
-        }
-
-        return $this->options;
-    }
 
     public function attrs2txt(){
 
-        $txt = '';
+         $txt = '';
         if(!empty($this->attrs))
         {
             foreach($this->attrs as $k => $v)
@@ -68,22 +62,35 @@ class InputRadio{
         return trim($txt);
     }
 
+
     public function create()
     {
-        $value = $this->attr("value");
-        unset($this->attrs["value"]);
-        $options = $this->options();
-           $html = "<ul>";
-        if(!empty($options))
+
+        if(isset($this->attrs["min_year"]) && !empty($this->attrs["min_year"]))
         {
-            foreach($options as $k => $v)
-            {
-                $this->attr("value",$k);
-                $html .= '<li><label><input type="radio" name="'.$this->name().'" '.$this->attrs2txt().' '.(isset($value) && $value == $k ? "checked='checked'" : "").' /> <span>'.$v.'</span></label></li>';
-            }
+            $min_y = $this->attrs["min_year"];
+            unset($this->attrs["min_year"]);
         }
-        $html .= "</ul>";
-        return $html;
+        else
+        {
+            $min_y = date('Y')-95;
+        }
+        if(isset($this->attrs["max_year"]) && !empty($this->attrs["max_year"]))
+        {
+            $max_y = $this->attrs["max_year"];
+            unset($this->attrs["max_year"]);
+        }
+        else
+        {
+            $max_y = date('Y');
+        }
+
+        $input = '<input type="date" id="' . $this->name() . '" name="' . $this->name() . '" ' . $this->attrs2txt() . '  />';
+
+        $label_error = "<label name='".$this->name()."-error' for='".$this->name()."' class='error' style='display:none;'></label>";
+
+        return $input.$label_error;
+
     }
 
 }

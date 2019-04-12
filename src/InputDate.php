@@ -1,19 +1,16 @@
 <?php
 namespace Franky\Form;
 
-use vendor\mobile_detect\Mobile_Detect;
+
 use Franky\Form\InputSelect;
 class InputDate{
 
     private $name = '';
     private $attrs = [];
-    private $Mobile_Detect = false;
     private $InputSelect;
 
-    public function __construct(Mobile_Detect $Mobile_Detect,
-            InputSelect $InputSelect) {
+    public function __construct( InputSelect $InputSelect) {
 
-        $this->Mobile_Detect = $Mobile_Detect;
         $this->InputSelect = $InputSelect;
 
     }
@@ -104,15 +101,9 @@ class InputDate{
             $max_y = date('Y');
         }
 
-        if($this->Mobile_Detect->isMobile() )
-        {
-          $input = '<input type="date" id="' . $this->name() . '" name="' . $this->name() . '" ' . $this->attrs2txt() . '  />';
 
-        }
-        else {
           $input = '<div style="width: 1px; height:1px; overflow: hidden;"><input type="text" id="' . $this->name() . '" name="' . $this->name() . '" ' . $this->attrs2txt() . '  /></div>';
 
-        }
 
         $f = array("","","");
 
@@ -160,13 +151,6 @@ class InputDate{
 
         $label_error = "<label name='".$this->name()."-error' for='".$this->name()."' class='error' style='display:none;'></label>";
 
-
-
-        if($this->Mobile_Detect->isMobile())
-        {
-
-            return $input.$label_error;
-        }
 
         return $input.$input_dia.$input_mes.$input_ano.$label_error.$this->script();
     }

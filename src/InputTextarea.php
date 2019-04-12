@@ -1,28 +1,24 @@
 <?php
 namespace Franky\Form;
 
-use vendor\mobile_detect\Mobile_Detect;
 
 class InputTextarea{
-    
+
     private $name = '';
     private $attrs = [];
-    private $Mobile_Detect = false;
-    
-    public function __construct(Mobile_Detect $Mobile_Detect) {
-        
-        $this->Mobile_Detect = $Mobile_Detect;
-        
+
+    public function __construct() {
+
     }
-    
+
     public function  name($name = null){
         if(isset($name))
         {
             $this->name = $name;
             return $this;
         }
-       
-        return $this->name;   
+
+        return $this->name;
     }
 
 
@@ -33,24 +29,24 @@ class InputTextarea{
             $this->attrs = $attr;
             return $this;
         }
-       
-        return $this->attrs;   
+
+        return $this->attrs;
     }
-    
-    
+
+
     public function attr($attr,$val= null){
         if(isset($val))
         {
             $this->attrs[$attr] = $val;
             return $this;
         }
-       
-        return $this->attrs[$attr];   
+
+        return $this->attrs[$attr];
     }
-    
-    
+
+
     public function attrs2txt(){
-        
+
          $txt = '';
         if(!empty($this->attrs))
         {
@@ -59,22 +55,16 @@ class InputTextarea{
                 $txt .= $k.'="'.$v.'" ';
             }
         }
-       
+
         return trim($txt);
     }
 
     public function create()
     {
         $type = "textarea";
-        if($this->Mobile_Detect->isMobile() && !empty($this->type_mobile))
-        {
-            
-            $type = $this->type_mobile;
-        }
-        
-         $value = (isset($this->attrs["value"]) ? $this->attrs["value"] : "");
+        $value = (isset($this->attrs["value"]) ? $this->attrs["value"] : "");
         unset($this->attrs["value"]);
         return '<'.$type.' name="'.$this->name().'" '.$this->attrs2txt().'>'.$value.'</textarea>';
     }
-    
+
 }

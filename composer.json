@@ -17,12 +17,12 @@
 
     "autoload": {
         "psr-4": {
-            "Franky\\Database\\": "src/"
+            "Franky\\Form\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "FrankyTest\\Database\\": "test/"
+            "FrankyTest\\Form\\": "test/"
         }
     },
     "license": "MIT"

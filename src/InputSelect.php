@@ -1,18 +1,14 @@
 <?php
 namespace Franky\Form;
 
-use vendor\mobile_detect\Mobile_Detect;
-
 class InputSelect{
 
     private $name = '';
     private $label = '';
     private $attrs = [];
-    private $Mobile_Detect = false;
 
-    public function __construct(Mobile_Detect $Mobile_Detect) {
+    public function __construct() {
 
-        $this->Mobile_Detect = $Mobile_Detect;
 
     }
 

@@ -1,17 +1,14 @@
 <?php
 namespace Franky\Form;
 
-use vendor\mobile_detect\Mobile_Detect;
 
 class InputCheck{
 
     private $name = '';
     private $attrs = [];
-    private $Mobile_Detect = false;
 
-    public function __construct(Mobile_Detect $Mobile_Detect) {
 
-        $this->Mobile_Detect = $Mobile_Detect;
+    public function __construct() {
 
     }
 
@@ -75,7 +72,7 @@ class InputCheck{
     public function create()
     {
         $value = $this->attr("value");
-        
+
         unset($this->attrs["value"]);
         $options = $this->options();
 

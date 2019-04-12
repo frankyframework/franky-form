@@ -11,10 +11,10 @@ use Franky\Form\InputSubmit;
 use Franky\Form\InputImage;
 use Franky\Form\InputSelect;
 use Franky\Form\InputDate;
+use Franky\Form\InputDateMobile;
 use Franky\Form\InputRadio;
 use Franky\Form\InputCheck;
 use Franky\Form\InputLabel;
-use vendor\mobile_detect\Mobile_Detect;
 
 class Form
 {
@@ -33,24 +33,27 @@ class Form
     private $InputRadio;
     private $InputCheck;
     private $InputDate;
+    private $InputMobile;
     private $InputLabel;
+    private $isMobile;
 
     function __construct() {
 
 
-        $this->InputText = new InputText(new Mobile_Detect);
-        $this->InputPassword = new InputPassword(new Mobile_Detect);
-        $this->InputTextarea = new InputTextarea(new Mobile_Detect);
-        $this->InputHidden = new InputHidden(new Mobile_Detect);
-        $this->InputFile = new InputFile(new Mobile_Detect);
-        $this->InputButton = new InputButton(new Mobile_Detect);
-        $this->InputSubmit = new InputSubmit(new Mobile_Detect);
-        $this->InputImage = new InputImage(new Mobile_Detect);
-        $this->InputSelect = new InputSelect(new Mobile_Detect);
-        $this->InputDate = new InputDate(new Mobile_Detect, new InputSelect(new Mobile_Detect));
-        $this->InputRadio = new InputRadio(new Mobile_Detect);
-        $this->InputCheck = new InputCheck(new Mobile_Detect);
-        $this->InputLabel = new InputLabel(new Mobile_Detect);
+        $this->InputText = new InputText();
+        $this->InputPassword = new InputPassword();
+        $this->InputTextarea = new InputTextarea();
+        $this->InputHidden = new InputHidden();
+        $this->InputFile = new InputFile();
+        $this->InputButton = new InputButton();
+        $this->InputSubmit = new InputSubmit();
+        $this->InputImage = new InputImage();
+        $this->InputSelect = new InputSelect();
+        $this->InputDate = new InputDate(new InputSelect());
+        $this->InputDateMobile = new InputDateMobile();
+        $this->InputRadio = new InputRadio();
+        $this->InputCheck = new InputCheck();
+        $this->InputLabel = new InputLabel();
 
         $this->fields = array();
         $this->attrs = array();
@@ -60,6 +63,15 @@ class Form
     public function openTag(){ return "<form  ".$this->attrs2txt()." >"; }
     public function endTag(){ return "</form>"; }
 
+    private function isMobile()
+    {
+      return $this->isMobile;
+    }
+
+    public function setMobile($mobile)
+    {
+       $this->isMobile = $mobile;
+    }
 
     public function setAtributos($val)
     {
@@ -141,7 +153,13 @@ class Form
        switch (strtolower($this->fields[$key]["type"]))
        {
             case "text":
+              if(isset($this->fields[$key]["atributos"]['type_mobile']) && $this->isMobile())
+              {
                 return $this->InputText->name($key)->attrs($this->fields[$key]["atributos"])->create();
+              }
+              $this->fields[$key]["atributos"]['type'] = strtolower($this->fields[$key]["type"]);
+
+              return $this->InputText->name($key)->attrs($this->fields[$key]["atributos"])->create();
             case "password":
                 return  $this->InputPassword->name($key)->attrs($this->fields[$key]["atributos"])->create();
             case "file":
@@ -166,6 +184,10 @@ class Form
             case "image":
                 return  $this->InputImage->name($key)->attrs($this->fields[$key]["atributos"])->create();
             case "date":
+            if(isset($this->fields[$key]["atributos"]['type_mobile']) && $this->isMobile())
+            {
+              return  $this->InputDateMobile->name($key)->attrs($this->fields[$key]["atributos"])->create();
+            }
                 return  $this->InputDate->name($key)->attrs($this->fields[$key]["atributos"])->create();
 
        }
@@ -260,7 +282,7 @@ class Form
 
     public function deleteInput($name)
     {
-      unset($this->fields[$name]);
+        unset($this->fields[$name]);
     }
 }
 ?>

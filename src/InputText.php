@@ -1,17 +1,15 @@
 <?php
 namespace Franky\Form;
 
-use vendor\mobile_detect\Mobile_Detect;
 
 class InputText{
 
     private $name = '';
     private $attrs = [];
-    private $Mobile_Detect = false;
 
-    public function __construct(Mobile_Detect $Mobile_Detect) {
+    public function __construct() {
 
-        $this->Mobile_Detect = $Mobile_Detect;
+
 
     }
 
@@ -69,13 +67,7 @@ class InputText{
 
     public function create()
     {
-        $type = "text";
-        if($this->Mobile_Detect->isMobile() && isset($this->attrs["type_mobile"]))
-        {
-
-            $type = $this->attrs["type_mobile"];
-
-        }
+        $type = $this->attrs["type"];
 
         return '<input type="'.$type.'" name="'.$this->name.'" '.$this->attrs2txt().' />';
     }
