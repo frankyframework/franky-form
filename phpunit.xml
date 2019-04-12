@@ -1,0 +1,8 @@
+<phpunit bootstrap="vendor/autoload.php" basedir="./">
+    <testsuites>
+      <testsuite name="Form Test">
+        <directory>./test/</directory>
+      </testsuite>
+    </testsuites>
+
+</phpunit>
