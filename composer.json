@@ -1,7 +1,7 @@
 {
     "name": "frankyframework/franky-form",
     "type": "library",
-    "description": "Funciones de tokenizacion y escape de caracteres",
+    "description": "Constructor de formularios",
     "authors": [
         {
             "name": "Ussiel Acevedo",
