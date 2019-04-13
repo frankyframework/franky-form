@@ -68,6 +68,8 @@ class InputText{
     public function create()
     {
         $type = $this->attrs["type"];
+        
+        unset($this->attrs["type"]);
 
         return '<input type="'.$type.'" name="'.$this->name.'" '.$this->attrs2txt().' />';
     }
