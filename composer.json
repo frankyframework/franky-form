@@ -2,6 +2,8 @@
     "name": "frankyframework/franky-form",
     "type": "library",
     "description": "Constructor de formularios",
+    "minimum-stability": "dev",
+    "prefer-stable": false,
     "authors": [
         {
             "name": "Ussiel Acevedo",
