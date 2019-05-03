@@ -102,7 +102,7 @@ class InputDate{
         }
 
 
-          $input = '<div style="width: 1px; height:1px; overflow: hidden;"><input type="text" id="' . $this->name() . '" name="' . $this->name() . '" ' . $this->attrs2txt() . '  /></div>';
+          $input = '<div style="width: 1px; height:1px; overflow: hidden;"><input type="text" id="' . $this->name() . '" name="' . $this->name() . '" ' . $this->attrs2txt() . ' readonly="readonly"  /></div>';
 
 
         $f = array("","","");
