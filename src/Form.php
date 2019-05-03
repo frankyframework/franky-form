@@ -184,11 +184,15 @@ class Form
             case "image":
                 return  $this->InputImage->name($key)->attrs($this->fields[$key]["atributos"])->create();
             case "date":
+            
+            unset($this->fields[$key]["type"]);
             if(isset($this->fields[$key]["atributos"]['type_mobile']) && $this->isMobile())
             {
-              return  $this->InputDateMobile->name($key)->attrs($this->fields[$key]["atributos"])->create();
+                unset($this->fields[$key]["atributos"]['type_mobile']);
+                return  $this->InputDateMobile->name($key)->attrs($this->fields[$key]["atributos"])->create();
             }
-                return  $this->InputDate->name($key)->attrs($this->fields[$key]["atributos"])->create();
+            unset($this->fields[$key]["atributos"]['type_mobile']);
+            return  $this->InputDate->name($key)->attrs($this->fields[$key]["atributos"])->create();
 
        }
     }
