@@ -153,13 +153,15 @@ class Form
        switch (strtolower($this->fields[$key]["type"]))
        {
             case "text":
-              if(isset($this->fields[$key]["atributos"]['type_mobile']) && $this->isMobile())
-              {
-                return $this->InputText->name($key)->attrs($this->fields[$key]["atributos"])->create();
-              }
-              $this->fields[$key]["atributos"]['type'] = strtolower($this->fields[$key]["type"]);
+            if(isset($this->fields[$key]["atributos"]['type_mobile']) && $this->isMobile())
+            {
 
-              return $this->InputText->name($key)->attrs($this->fields[$key]["atributos"])->create();
+                $this->fields[$key]["atributos"]['type'] = strtolower($this->fields[$key]["atributos"]['type_mobile']);
+                unset($this->fields[$key]["atributos"]['type_mobile']);
+            }
+            $this->fields[$key]["atributos"]['type'] = strtolower($this->fields[$key]["type"]);
+
+            return $this->InputText->name($key)->attrs($this->fields[$key]["atributos"])->create();
             case "password":
                 return  $this->InputPassword->name($key)->attrs($this->fields[$key]["atributos"])->create();
             case "file":

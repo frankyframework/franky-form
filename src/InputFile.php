@@ -49,7 +49,11 @@ class InputFile{
         {
             foreach($this->attrs as $k => $v)
             {
-                $txt .= $k.'="'.$v.'" ';
+                if($k != 'type')
+                {
+                    $txt .= $k.'="'.$v.'" ';
+                }
+                
             }
         }
 
@@ -58,8 +62,8 @@ class InputFile{
 
     public function create()
     {
-        $type = "file";
-        return '<input type="'.$type.'" name="'.$this->name.'" '.$this->attrs2txt().' />';
+    
+        return '<input type="'.$$this->attr('type').'" name="'.$this->name.'" '.$this->attrs2txt().' />';
     }
 
 }
