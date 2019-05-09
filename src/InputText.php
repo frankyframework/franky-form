@@ -50,7 +50,7 @@ class InputText{
     public function attrs2txt(){
 
          $txt = '';
-         $invalid_tags = array('type_mobile');
+         $invalid_tags = array('type_mobile','type');
         if(!empty($this->attrs))
         {
             foreach($this->attrs as $k => $v)
@@ -68,8 +68,6 @@ class InputText{
     public function create()
     {
         $type = $this->attrs["type"];
-        
-        unset($this->attrs["type"]);
 
         return '<input type="'.$type.'" name="'.$this->name.'" '.$this->attrs2txt().' />';
     }

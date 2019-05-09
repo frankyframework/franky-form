@@ -155,7 +155,7 @@ class Form
             case "text":
                 if(isset($this->fields[$key]["atributos"]['type_mobile']) && $this->isMobile())
                 {
-                    $this->fields[$key]["atributos"]['type'] = strtolower($this->fields[$key]["atributos"]['type_mobile']);
+                    $this->fields[$key]['type'] = strtolower($this->fields[$key]["atributos"]['type_mobile']);
                 }
                 $this->fields[$key]["atributos"]['type'] = strtolower($this->fields[$key]["type"]);
             return $this->InputText->name($key)->attrs($this->fields[$key]["atributos"])->create();
