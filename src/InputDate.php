@@ -67,12 +67,16 @@ class InputDate{
     {
          return '<script >'
                 . '<!--'
+                .'var dia = $("select[name='.$this->name().'_dia]");'
+                .'var mes = $("select[name='.$this->name().'_mes]");'
+                .'var ano = $("select[name='.$this->name().'_ano]");'
+                .'var input = $("input[name='.$this->name().']");'
                 ."\n"
                 . '$(document).ready(function(){'
                     . '$("select[name='.$this->name().'_dia], select[name='.$this->name().'_mes], select[name='.$this->name().'_ano]").change(function(){'
-                        . 'if($("select[name='.$this->name().'_dia]").val() != "" && $("select[name='.$this->name().'_mes]").val() != "" && $("select[name='.$this->name().'_ano]").val() != ""){'
-                            .'$("input[name='.$this->name().']").val($("select[name='.$this->name().'_ano").val()+"-"+$("select[name='.$this->name().'_mes]").val()+"-"+$("select[name='.$this->name().'_dia]").val());'
-                        . '}else{ $("input[name='.$this->name().']").val(""); }'
+                        . 'if(dia.val() != "" && mes.val() != "" && ano.val() != ""){'
+                            .'input.val(ano.val()+"-"+mes.val()+"-"+dia.val());'
+                        . '}else{ input.val(""); }'
                     . '});'
                 . '});'
                 ."\n"
