@@ -63,20 +63,21 @@ class InputDate{
         return trim($txt);
     }
 
+
     public function script()
     {
          return '<script >'
                 . '<!--'
-                .'var dia = $("select[name='.$this->name().'_dia]");'
-                .'var mes = $("select[name='.$this->name().'_mes]");'
-                .'var ano = $("select[name='.$this->name().'_ano]");'
-                .'var input = $("input[name='.$this->name().']");'
+                .'var '.$this->name().'_dia = $("select[name='.$this->name().'_dia]");'
+                .'var '.$this->name().'_mes = $("select[name='.$this->name().'_mes]");'
+                .'var '.$this->name().'_ano = $("select[name='.$this->name().'_ano]");'
+                .'var '.$this->name().'_input = $("input[name='.$this->name().']");'
                 ."\n"
                 . '$(document).ready(function(){'
                     . '$("select[name='.$this->name().'_dia], select[name='.$this->name().'_mes], select[name='.$this->name().'_ano]").change(function(){'
-                        . 'if(dia.val() != "" && mes.val() != "" && ano.val() != ""){'
-                            .'input.val(ano.val()+"-"+mes.val()+"-"+dia.val());'
-                        . '}else{ input.val(""); }'
+                        . 'if('.$this->name().'_dia.val() != "" && '.$this->name().'_mes.val() != "" && '.$this->name().'_ano.val() != ""){'
+                            .''.$this->name().'_input.val('.$this->name().'_ano.val()+"-"+'.$this->name().'_mes.val()+"-"+'.$this->name().'_dia.val());'
+                        . '}else{ '.$this->name().'_input.val(""); }'
                     . '});'
                 . '});'
                 ."\n"
