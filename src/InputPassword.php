@@ -60,12 +60,27 @@ class InputPassword{
         return trim($txt);
     }
 
+    public function script()
+    {
+         return '<script >'
+                . '$(".show_password").click(function(){'
+                .   'if($(this).is(":checked")) { $(this).parent().prev("input").attr("type", "text"); } '
+                .   'else { $(this).parent().prev("input").attr("type", "password"); } '
+                . '});'
+                . '</script>';
+    }
+
+    public function eye()
+    {
+         return '<label><input type="checkbox" name="valueshowpassword" class="show_password"/>Mostrar valor</label>';
+    }
+
     public function create()
     {
         $type = "password";
       
 
-        return '<input type="'.$type.'" name="'.$this->name().'"  '.$this->attrs2txt().' />';
+        return '<input type="'.$type.'" name="'.$this->name().'"  '.$this->attrs2txt().' />'.$this->eye().$this->script();
     }
 
 }
