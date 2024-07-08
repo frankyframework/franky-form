@@ -33,7 +33,7 @@ class Form
     private $InputRadio;
     private $InputCheck;
     private $InputDate;
-    private $InputMobile;
+    private $InputDateMobile;
     private $InputLabel;
     private $isMobile;
 
