@@ -77,7 +77,7 @@ class InputPassword{
 
     public function eye()
     {
-         return '<label><input type="checkbox" name="valueshowpassword'.$this->name().'" class="show_password'.$this->name().'"/>'.(!empty($this->attr('showPassword')) ? $this->attr('showPassword') : 'Mostrar valor').'</label>';
+         return '<label><input type="checkbox" name="valueshowpassword'.$this->name().'" class="show_password show_password'.$this->name().'"/>'.(!empty($this->attr('showPassword')) ? $this->attr('showPassword') : 'Mostrar valor').'</label>';
     }
 
     public function errorLabel()
