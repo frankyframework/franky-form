@@ -86,7 +86,7 @@ class InputLabel{
     public function create()
     {
    
-        return $html =  "<div class=\"form-group form_".$this->name()."\">"
+        return $html =  "<div class=\"form-group form_".str_replace("[]", "",$this->name())."\">"
                     . "<label ".$this->attrs2txt().">"
                     . ($this->required() ? "*" : "")
                     . (empty($this->label) ? '' : '<span>'.$this->label().'</span>')
