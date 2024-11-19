@@ -6,6 +6,7 @@ class InputSelect{
     private $name = '';
     private $label = '';
     private $attrs = [];
+    private $options = [];
 
     public function __construct() {
 
