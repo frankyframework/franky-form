@@ -50,8 +50,10 @@ class InputSelect{
             $this->attrs[$attr] = $val;
             return $this;
         }
-
-        return $this->attrs[$attr];
+        if(isset($this->attrs[$attr])) {
+            return $this->attrs[$attr];
+        }
+        return false;
     }
 
     public function options($options= null){
