@@ -66,8 +66,7 @@ class InputDate{
 
     public function script()
     {
-         return '<script >'
-                . "<!--\n"
+         return '<script>'
                 .'var '.$this->name().'_dia = $("select[name='.$this->name().'_dia]");'
                 .'var '.$this->name().'_mes = $("select[name='.$this->name().'_mes]");'
                 .'var '.$this->name().'_ano = $("select[name='.$this->name().'_ano]");'
@@ -81,7 +80,6 @@ class InputDate{
                     . '});'
                 . '});'
                 ."\n"
-                . '// -->'
                 . '</script>';
     }
     public function create()
